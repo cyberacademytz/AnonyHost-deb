@@ -2,8 +2,6 @@
 
 **AnonyHost** is a powerful tool designed for cybersecurity and anonymity management on Linux systems. It helps users configure privacy-focused network settings, manage identity-related system information, and support secure testing workflows on Debian-based distributions such as Debian and Kali Linux.
 
-> **Important:** Use AnonyHost only on systems and networks you own or are authorized to test. Anonymity tools do not guarantee legal or complete privacy, and they must not be used for unlawful activity.
-
 ## Features
 
 - Designed for Linux-based cybersecurity and privacy workflows
