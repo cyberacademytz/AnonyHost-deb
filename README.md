@@ -1,66 +1,108 @@
 # AnonyHost
 
-**AnonyHost** is a powerful tool designed for cybersecurity and anonymity management on Linux systems. It helps users configure privacy-focused network settings, manage identity-related system information, and support secure testing workflows on Debian-based distributions such as Debian and Kali Linux.
+**AnonyHost** is a powerful tool designed for cybersecurity and anonymity management on Linux systems. It is designed for Debian-based distributions, including Debian and Kali Linux.
 
 ## Features
 
-- Designed for Linux-based cybersecurity and privacy workflows
-- Simple installation through a Debian package (`.deb`)
-- Supports Debian and Kali Linux environments
-- Helps manage anonymity-related system and network configurations
+- Designed for cybersecurity and anonymity management on Linux
+- Supports Debian and Kali Linux
+- Simple `.deb` package installation
+- Helps manage privacy- and anonymity-related system settings
 - Suitable for security researchers, penetration testers, and privacy-conscious users
-- Lightweight command-line-oriented workflow
+- Lightweight and command-line oriented
 
 ## Requirements
 
-Before installing AnonyHost, ensure your system meets the following requirements:
+Before installing AnonyHost, ensure that your system meets the following requirements:
 
 - Debian, Kali Linux, or another compatible Debian-based distribution
 - A 64-bit (`amd64`) system
 - Terminal access
-- Administrative (`sudo`) privileges for installation
-- An active internet connection to download the package
+- Administrative (`sudo`) privileges
+- An internet connection to download the package
 
 ## Installation
 
-To install AnonyHost on Debian or Kali Linux, follow these simple steps:
+### 1. Download AnonyHost
 
-1. **Download** the latest `.deb` package (`anonyhost_1.0.0_amd64.deb`) from the [Releases page](https://github.com/cyberacademytz/AnonyHost/releases).
-2. **Open your terminal** and navigate to the folder where you downloaded the file (usually your Downloads folder):
+Download the AnonyHost Debian package as a ZIP archive:
 
-   ```bash
-   cd ~/Downloads
-   ```
+**[Download AnonyHost-deb as ZIP](https://github.com/cyberacademytz/AnonyHost-deb/archive/refs/heads/main.zip)**
 
-3. **Install the package** using `apt`:
+This will download a ZIP file containing the AnonyHost `.deb` package.
 
-   ```bash
-   sudo apt install ./anonyhost_1.0.0_amd64.deb
-   ```
+### 2. Extract the ZIP file
 
-   Alternatively, install it using `dpkg`:
+After the download completes, extract the ZIP file.
 
-   ```bash
-   sudo dpkg -i anonyhost_1.0.0_amd64.deb
-   ```
+You can extract it using your file manager, or use the terminal:
 
-   If dependency errors appear after using `dpkg`, run:
+```bash
+cd ~/Downloads
+unzip AnonyHost-deb-main.zip
+cd AnonyHost-deb-main
+```
 
-   ```bash
-   sudo apt --fix-broken install
-   ```
+If `unzip` is not installed, install it first:
 
-4. **Verify the installation**:
+```bash
+sudo apt update
+sudo apt install unzip
+```
 
-   ```bash
-   anonyhost --version
-   ```
+After extraction, locate the Debian package:
 
-   If the version command is not available, check the installed package with:
+```bash
+anonyhost_1.0.0_amd64.deb
+```
 
-   ```bash
-   dpkg -l | grep anonyhost
-   ```
+### 3. Verify the package integrity
+
+Before installing, verify that the `.deb` file has not been modified or corrupted by checking its SHA-256 hash.
+
+Run the following command from the folder containing the `.deb` file:
+
+```bash
+sha256sum anonyhost_1.0.0_amd64.deb
+```
+
+The expected output is:
+
+```text
+2aa592476f865fa1e3d85535157090e5baef710b1fe536495afdcf7b11df41f4  anonyhost_1.0.0_amd64.deb
+```
+
+If the hash matches exactly, the package is intact and safe to install.
+
+If the hash does **not** match, do **not** install the package. Delete the downloaded ZIP file and `.deb` file, then download them again.
+
+### 4. Install AnonyHost
+
+With the verified `.deb` file in your current terminal directory, install it using `apt`:
+
+```bash
+sudo apt install ./anonyhost_1.0.0_amd64.deb
+```
+
+Alternatively, install it using `dpkg`:
+
+```bash
+sudo dpkg -i anonyhost_1.0.0_amd64.deb
+```
+
+If dependency errors occur after using `dpkg`, run:
+
+```bash
+sudo apt --fix-broken install
+```
+
+### 5. Verify the installation
+
+Check that AnonyHost was installed successfully:
+
+```bash
+dpkg -l | grep anonyhost
+```
 
 ## Getting Started
 
@@ -70,74 +112,49 @@ After installation, open a terminal and run:
 anonyhost
 ```
 
-You can also view the available commands and options with:
+To view available commands, options, and usage information, run:
 
 ```bash
 anonyhost --help
 ```
 
-Use the help menu to explore the available anonymity, network, and system-management features.
-
-## Usage
-
-AnonyHost is intended to assist with cybersecurity and anonymity management tasks, such as:
-
-- Reviewing and managing privacy-related system settings
-- Supporting secure and anonymous testing workflows
-- Managing network-related configurations
-- Assisting security professionals during authorized assessments
-- Providing a simple interface for anonymity-focused Linux operations
-
-Always review the tool’s output before applying system changes, especially when running commands with administrative privileges.
-
 ## Security and Responsible Use
 
-AnonyHost should be used responsibly and only for legitimate purposes.
+Use AnonyHost responsibly and only for legitimate purposes.
 
 - Use it only on devices you own or have explicit permission to test.
-- Do not use anonymity tools to bypass laws, terms of service, or organizational policies.
+- Do not use AnonyHost to bypass laws, organizational policies, or terms of service.
 - Keep your operating system and security tools updated.
-- Back up important system settings before making network or identity-related changes.
-- Understand that no tool can guarantee complete anonymity or security.
+- Back up important settings before changing network or identity-related configurations.
+- Remember that no tool can guarantee complete anonymity or security.
 - Do not use AnonyHost for harassment, fraud, unauthorized access, malware distribution, or other illegal activity.
 
 ## Uninstallation
 
-To remove AnonyHost from your system, run:
+To remove AnonyHost, run:
 
 ```bash
 sudo apt remove anonyhost
 ```
 
-To remove the package along with its configuration files, run:
+To remove the package and its configuration files, run:
 
 ```bash
 sudo apt purge anonyhost
 ```
 
-Then clean up unnecessary dependencies:
+Then remove unnecessary dependencies:
 
 ```bash
 sudo apt autoremove
 ```
-
-## Troubleshooting
-
-| Issue | Possible solution |
-|---|---|
-| Permission denied during installation | Run the installation command with `sudo` |
-| Package cannot be installed | Ensure you downloaded the `amd64` package and are using a 64-bit Debian-based system |
-| Dependency errors after `dpkg -i` | Run `sudo apt --fix-broken install` |
-| Command not found after installation | Restart your terminal or check whether `/usr/local/bin` or `/usr/bin` is in your `PATH` |
-| Installation fails | Verify the downloaded file is complete and matches the latest release |
-
 ## Contributing
 
-Contributions are welcome. If you would like to improve AnonyHost, report a bug, suggest a feature, or submit documentation updates:
+Contributions are welcome. To contribute:
 
 1. Fork the repository.
-2. Create a new branch for your change.
-3. Make your changes and test them.
+2. Create a new branch for your changes.
+3. Make and test your changes.
 4. Submit a pull request with a clear description.
 
 ## License
